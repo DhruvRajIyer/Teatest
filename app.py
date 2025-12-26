@@ -9,181 +9,74 @@ st.set_page_config("Chai Taste Intelligence v3", "🫖", layout="wide")
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/* Global Styles */
-.main { 
-    padding: 2rem 4rem;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #fdfbfb 0%, #f7f4ed 100%);
+/* Dark background for the app */
+body, .main, .block-container {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
-h1 { 
-    margin-bottom: 0.2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-    font-size: 3rem !important;
+/* Headers */
+h1, h2, h3, h4 {
+    color: #ffffff !important;
 }
 
-h2, h3 {
-    color: #2d3748;
-    font-weight: 600;
-}
-
-/* Ensure result-box text is dark */
-.result-box h2, .result-box h3, .result-box h4, .result-box p, .result-box div {
-    color: #2d3748 !important;
-}
-
-.result-box [data-testid="stMarkdownContainer"] p {
-    color: #718096 !important;
-}
-
-/* Metric Card with Gradient */
+/* Metric cards */
 .metric-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: #1f1f1f !important;
+    color: #ffffff !important;
     border-radius: 20px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-    color: white;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
 }
 
-.metric-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-}
-
-.metric-card h3, .metric-card h2 {
-    color: white !important;
-}
-
-.metric-card p, .metric-card div, .metric-card span {
-    color: white !important;
-}
-
-/* Fix Streamlit metric widget colors inside metric-card */
-.metric-card [data-testid="stMetricValue"] {
-    color: white !important;
-}
-
-.metric-card [data-testid="stMetricLabel"] {
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-.metric-card [data-testid="stMetricDelta"] {
-    color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* Result Box with Enhanced Design */
+/* Result boxes */
 .result-box {
-    background: #ffffff;
+    background-color: #1f1f1f !important;
+    color: #e0e0e0 !important;
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    border: 1px solid rgba(102, 126, 234, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
 }
 
-.result-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
-}
-
-/* Enhanced Tags */
+/* Tags */
 .tag {
     display: inline-block;
     padding: 8px 16px;
     border-radius: 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background-color: #333333 !important;
+    color: #ffffff !important;
     margin-right: 8px;
     margin-top: 8px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
-    transition: transform 0.2s ease;
 }
 
-.tag:hover {
-    transform: scale(1.05);
-}
-
-/* Survey Section Styling */
-.stSlider {
-    padding: 0.5rem 0;
-}
-
-/* Button Enhancement */
+/* Buttons */
 .stButton > button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 0.75rem 2.5rem;
-    border-radius: 30px;
+    background-color: #333333 !important;
+    color: #ffffff !important;
+    border-radius: 20px;
+    padding: 0.75rem 2rem;
     font-weight: 600;
-    font-size: 1.1rem;
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-    transition: all 0.3s ease;
 }
 
 .stButton > button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
+    background-color: #444444 !important;
 }
 
-/* Divider Enhancement */
+/* Sliders */
+.stSlider label, .stSlider div {
+    color: #e0e0e0 !important;
+}
+
+/* Divider */
 hr {
-    margin: 2rem 0;
-    border: none;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #667eea, transparent);
-}
-
-/* Caption Styling */
-.css-1629p8f, [data-testid="stCaptionContainer"] {
-    color: #718096;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-/* Success Box Enhancement */
-.stSuccess {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-    color: white !important;
-    border-radius: 15px;
-    padding: 1rem;
-    font-weight: 600;
-    font-size: 1.2rem;
-}
-
-.stSuccess > div {
-    color: white !important;
-}
-
-/* Section Headers */
-.section-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-    margin-top: 1.5rem;
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.result-box, .metric-card {
-    animation: fadeIn 0.6s ease-out;
+    border: 1px solid #444444;
 }
 </style>
 """, unsafe_allow_html=True)
+
+
 
 st.markdown("<h1>🫖 Chai Taste Intelligence</h1>", unsafe_allow_html=True)
 st.caption("✨ AI-driven flavor profiling • Psychometric survey • Smart tea recommendation ✨")

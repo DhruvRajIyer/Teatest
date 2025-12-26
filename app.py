@@ -32,6 +32,15 @@ h2, h3 {
     font-weight: 600;
 }
 
+/* Ensure result-box text is dark */
+.result-box h2, .result-box h3, .result-box h4, .result-box p, .result-box div {
+    color: #2d3748 !important;
+}
+
+.result-box [data-testid="stMarkdownContainer"] p {
+    color: #718096 !important;
+}
+
 /* Metric Card with Gradient */
 .metric-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -50,6 +59,23 @@ h2, h3 {
 
 .metric-card h3, .metric-card h2 {
     color: white !important;
+}
+
+.metric-card p, .metric-card div, .metric-card span {
+    color: white !important;
+}
+
+/* Fix Streamlit metric widget colors inside metric-card */
+.metric-card [data-testid="stMetricValue"] {
+    color: white !important;
+}
+
+.metric-card [data-testid="stMetricLabel"] {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.metric-card [data-testid="stMetricDelta"] {
+    color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* Result Box with Enhanced Design */
@@ -127,11 +153,15 @@ hr {
 /* Success Box Enhancement */
 .stSuccess {
     background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-    color: white;
+    color: white !important;
     border-radius: 15px;
     padding: 1rem;
     font-weight: 600;
     font-size: 1.2rem;
+}
+
+.stSuccess > div {
+    color: white !important;
 }
 
 /* Section Headers */
